@@ -19,8 +19,8 @@ function validate(){
 		//alert(json_data)
         
 		var xhr = new XMLHttpRequest();
-		//xhr.open("PUT", "http://127.0.0.1:8000/api/v1/users/");
-		xhr.open("PUT","https://081b-43-247-157-2.ngrok.io/api/v1/users/")
+		xhr.open("PUT", "http://127.0.0.1:8000/api/v1/users/");
+		//xhr.open("PUT","https://081b-43-247-157-2.ngrok.io/api/v1/users/")
 
 		xhr.setRequestHeader("Accept", "application/json");
 		xhr.setRequestHeader("Content-Type", "application/json");
@@ -29,7 +29,8 @@ function validate(){
 		
 			if (this.readyState == 4 && this.status==201)
 			{
-						alert(this.responseText);
+				var res =this.responseText
+				alert(res.replace(/['"]+/g, ''))
 			}
 			else if(this.readyState == 4 && this.status==400)
 			{

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>List of Users. </title>
+        <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+    
+    </head>
+    <body>
+
+        <script>
+  
+         var xhr = new XMLHttpRequest();
+		xhr.open("GET", "http://127.0.0.1:8000/api/v1/users/");
+		//xhr.open("DELETE","https://081b-43-247-157-2.ngrok.io/api/v1/users/")
+
+		xhr.setRequestHeader("Accept", "application/json");
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.send()
+		xhr.onload = function() {
+		
+			if (this.readyState == 4 && this.status==201)
+			{
+               // alert(this.responseText)
+                var dict =JSON.parse(this.responseText)
+
+                if(dict.length==0){
+
+                  document.write("<h3>NO USERS FOUND</h3>")
+                }
+
+                else
+                {
+
+                  document.write("<ul>");
+                  for (var user of dict) 
+                   {
+                      document.write("<li>")
+                      document.write("<h3>Name : "+user.name+"</h3>");
+                      document.write("<h3>Email : "+user.email+"</h3>"); 
+                      document.write("</li>")
+                    }
+                  document.write("</ul>") 
+                }
+						
+			}
+			
+		}
+          
+       
+
+        </script>
+        
+        
+</body>
+</html>
