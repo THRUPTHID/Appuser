@@ -16,12 +16,40 @@
     }
     
     
-    mailid= data.ls.replace(/%40/, "@");
-    document.getElementById("email").value=mailid
-    
+    e= data.ls.replace(/%40/, "@");
+    document.getElementById("email").value=e
+    em=document.getElementById("email").value
+    //alert(em)
+     
 
-    }
+                    var xhr = new XMLHttpRequest();
+                    URL="http://127.0.0.1:8000/api/v1/users/"+em+"/"
+                    // URL="http://127.0.0.1:9000/api/v1/users/"+em+"/"
+                    xhr.open("GET", URL );
+		            xhr.setRequestHeader("Accept", "application/json");
+		            xhr.setRequestHeader("Content-Type", "application/json");
+		            xhr.send();
+                    xhr.onload = function() {
+		
+                    if (this.readyState == 4 && this.status==201)
+                          {
+                           // alert(this.responseText);
+                            var dict =JSON.parse(this.responseText)
+                            var p=dict.password
+                            //alert(p)
+                            document.getElementById("name").value=dict.name
+                            document.getElementById("pass1").value=p
+                            document.getElementById("pass2").value=p
 
+                            
+                          }
+                    else if(this.readyState == 4 && this.status==400)
+                          {
+                              var res =this.responseText
+                            alert(res.replace(/['"]+/g, ''))
+                          }
+                   }
+             }
         </script>
     </head>
     <body>
@@ -33,12 +61,43 @@
         <input type="text" id ="email" name="email"><br>
         
       	Name<br>
-      	<input type="text" name="name"><br>
+      	<input type="text" name="name" id="name"><br>
        
         Create a password<br>
-	<input type="password" name="password"><br>
+	<input type="password" name="password" id="pass1">
+    <input type="checkbox" onclick="Toggle1()">
+    <b>Show Password</b>
+  
+    <script>
+    // Change the type of input to password or text
+        function Toggle1() {
+            var temp = document.getElementById("pass1");
+            if (temp.type === "password") {
+                temp.type = "text";
+            }
+            else {
+                temp.type = "password";
+            }
+        }
+   </script>
+<br>
         Retype password<br>
-	<input type="password" name="retype_password"><br>
+	<input type="password" name="retype_password" id="pass2"> 
+ <input type="checkbox" onclick="Toggle2()">
+    <b>Show Password</b>
+  
+    <script>
+    // Change the type of input to password or text
+        function Toggle2() {
+            var temp = document.getElementById("pass2");
+            if (temp.type === "password") {
+                temp.type = "text";
+            }
+            else {
+                temp.type = "password";
+            }
+        }
+</script>
         
         
             

@@ -29,7 +29,7 @@ function ClearData()
 			// var select = document.getElementById('email_addresses');
 			// var e = select.options[select.selectedIndex].value;
            e=valueOf("email")
-		
+		 
 	
 		const python_data={
        
@@ -41,6 +41,7 @@ function ClearData()
         
 		var xhr = new XMLHttpRequest();
 		xhr.open("DELETE", "http://127.0.0.1:8000/api/v1/users/");
+		// xhr.open("DELETE", "http://127.0.0.1:9000/api/v1/users/");
 		//xhr.open("DELETE","https://081b-43-247-157-2.ngrok.io/api/v1/users/")
 
 		xhr.setRequestHeader("Accept", "application/json");

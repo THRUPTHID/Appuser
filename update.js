@@ -20,6 +20,7 @@ function validate(){
         
 		var xhr = new XMLHttpRequest();
 		xhr.open("PUT", "http://127.0.0.1:8000/api/v1/users/");
+		//xhr.open("PUT", "http://127.0.0.1:9000/api/v1/users/");
 		//xhr.open("PUT","https://081b-43-247-157-2.ngrok.io/api/v1/users/")
 
 		xhr.setRequestHeader("Accept", "application/json");
